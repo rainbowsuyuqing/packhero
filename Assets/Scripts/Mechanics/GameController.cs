@@ -22,6 +22,7 @@ namespace Platformer.Mechanics
         public int collectedEndint;
         public Text collectedEnd;
         public Text Name;
+        public Text Name2;
         public Text Status;
         public int statusif;
         //public static Vector2 lastCheckPointPos;
@@ -62,16 +63,19 @@ namespace Platformer.Mechanics
             {
                
                 Name.text = "Eco-Sleeve";
+				Name2.text="Eco-Paper Tape";
                 Status.text = "2/4";
             }
             else if(statusif==2)
             {
                 Name.text = "Flexi-Hex";
+				Name2.text="Eco Strapping";
                 Status.text = "3/4";
             }
             else if(statusif==3)
             {
                 Name.text = "Eco PinchTop Box";
+				Name2.text="Eco-Wallet";
                 Status.text = "4/4";
             }
   
