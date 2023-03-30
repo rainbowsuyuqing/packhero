@@ -68,7 +68,7 @@ namespace Platformer.Mechanics
             }
             else if(statusif==2)
             {
-                Name.text = "Flexi-Hex";
+                Name.text = "Flexi-Hex®";
 				Name2.text="Eco Strapping";
                 Status.text = "3/4";
             }
@@ -76,7 +76,7 @@ namespace Platformer.Mechanics
             {
                 Name.text = "Eco PinchTop Box";
 				Name2.text="Eco-Wallet";
-                Status.text = "4/4";
+                Status.text="4/4";
             }
   
         }
