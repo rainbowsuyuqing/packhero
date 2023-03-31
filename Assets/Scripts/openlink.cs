@@ -20,5 +20,12 @@ public class openlink : MonoBehaviour
     public void controlUrl()
     {
         Application.OpenURL("https://www.botta.it/eco-packaging/eco-protective-packaging/bottiglie-bottle-packaging/");
-    } 
+    }
+
+    public void openLinkTape()
+    {
+        
+        Application.OpenURL("https://www.botta.it/en/eco-packaging/eco-closures-and-sealing/");
+    }
+    
 }

@@ -59,6 +59,8 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
             if (Application.platform == RuntimePlatform.WebGLPlayer)
             {
+
+               
                 if (Application.isMobilePlatform)
                 {
                     deviceType = 1;
