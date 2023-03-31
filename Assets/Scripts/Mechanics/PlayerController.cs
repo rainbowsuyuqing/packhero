@@ -14,6 +14,9 @@ namespace Platformer.Mechanics
     /// </summary>
     public class PlayerController : KinematicObject
     {
+        public int deviceType = 0; // 0 is PC web, 1 is mobile
+        public Joystick joystick;
+        public GameObject jumpButton;
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
@@ -37,6 +40,7 @@ namespace Platformer.Mechanics
         private Collider playerCollider;
         public bool jump;
         bool st1;
+        bool pressedJump=false;
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
@@ -44,6 +48,7 @@ namespace Platformer.Mechanics
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Bounds Bounds => collider2d.bounds;
+        
 
         void Awake()
         {
@@ -52,16 +57,47 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                if (Application.isMobilePlatform)
+                {
+                    deviceType = 1;
+                    Debug.Log("Unity WebGL is running on mobile device");
+                }
+                else
+                {
+                    joystick.gameObject.SetActive(false);
+                    jumpButton.SetActive(false);
+                    deviceType = 0;
+                    Debug.Log("Unity WebGL is running on desktop");
+                }
+            }
+            else
+            {
+                Debug.Log("Unity WebGL is not running");
+            }
         }
+
 
         protected override void Update()
         {
             if (controlEnabled)
             {
-                move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
-                    jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
+                if (deviceType == 0)
+                {
+                    move.x = Input.GetAxis("Horizontal");
+                }
+                else if (deviceType == 1)
+                {
+                    move.x = joystick.Horizontal;
+                }
+                if (jumpState == JumpState.Grounded && (Input.GetButtonDown("Jump")|| (deviceType == 1 &&pressedJump == true)))
+                {
+                    jumpState = JumpState.PrepareToJump; 
+                    
+                }
+                    
+                else if (Input.GetButtonUp("Jump")|| (deviceType == 1 && pressedJump ==false))
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
@@ -101,6 +137,7 @@ namespace Platformer.Mechanics
                     break;
                 case JumpState.Landed:
                     jumpState = JumpState.Grounded;
+                    if(deviceType == 1) { pressedJump = false; }
                     break;
             }
         }
@@ -141,6 +178,11 @@ namespace Platformer.Mechanics
             InFlight,
             Landed,
             st1
+        }
+
+        public void ButtonJump()
+        {
+            pressedJump = true;
         }
     }
 }
