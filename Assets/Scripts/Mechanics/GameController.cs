@@ -61,7 +61,6 @@ namespace Platformer.Mechanics
             statusif = GameObject.Find("GameController").GetComponent<TokenController>().status;
             if (statusif==1)
             {
-               
                 Name.text = "Eco-Sleeve";
 				Name2.text="Eco-Paper Tape";
                 Status.text = "2/4";
@@ -71,6 +70,7 @@ namespace Platformer.Mechanics
                 Name.text = "Flexi-Hex®";
 				Name2.text="Eco Strapping";
                 Status.text = "3/4";
+				
             }
             else if(statusif==3)
             {

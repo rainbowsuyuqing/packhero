@@ -44,12 +44,13 @@ namespace Platformer.Mechanics
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
-        
-        readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
+		
 
+       
+        readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         public Bounds Bounds => collider2d.bounds;
         
-
+		
         void Awake()
         {
             health = GetComponent<Health>();
@@ -96,9 +97,8 @@ namespace Platformer.Mechanics
                 if (jumpState == JumpState.Grounded && (Input.GetButtonDown("Jump")|| (deviceType == 1 &&pressedJump == true)))
                 {
                     jumpState = JumpState.PrepareToJump; 
-                    
                 }
-                    
+
                 else if (Input.GetButtonUp("Jump")|| (deviceType == 1 && pressedJump ==false))
                 {
                     stopJump = true;
@@ -112,12 +112,13 @@ namespace Platformer.Mechanics
             UpdateJumpState();
             base.Update();
         }
-
+		
         void UpdateJumpState()
         {
             jump = false;
             switch (jumpState)
             {
+				
                 case JumpState.PrepareToJump:
                     if (IsGrounded && !stopJump)
                     {
@@ -164,10 +165,8 @@ namespace Platformer.Mechanics
                 spriteRenderer.flipX = false;
             else if (move.x < -0.01f)
                 spriteRenderer.flipX = true;
-
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
-
             targetVelocity = move * maxSpeed;
         }
     
@@ -179,7 +178,7 @@ namespace Platformer.Mechanics
             Jumping,
             InFlight,
             Landed,
-            st1
+            st1,
         }
 
         public void ButtonJump()
