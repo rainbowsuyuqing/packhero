@@ -8,7 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Mechanics/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Mechanics/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/openlink.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -44,6 +44,9 @@
       <updated>1680191278253</updated>
       <workItem from="1680191283647" duration="657000" />
       <workItem from="1680251367369" duration="2553000" />
+      <workItem from="1680679966557" duration="1050000" />
+      <workItem from="1680696242451" duration="125000" />
+      <workItem from="1680700848289" duration="1000" />
     </task>
     <servers />
   </component>
