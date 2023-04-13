@@ -44,7 +44,8 @@ namespace Platformer.Mechanics
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
-		
+     
+        
 
        
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
@@ -60,12 +61,12 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
             if (Application.platform == RuntimePlatform.WebGLPlayer)
             {
-
-               
                 if (Application.isMobilePlatform)
                 {
                     deviceType = 1;
                     Debug.Log("Unity WebGL is running on mobile device");
+
+
                 }
                 else
                 {
@@ -73,6 +74,7 @@ namespace Platformer.Mechanics
                     jumpButton.SetActive(false);
                     deviceType = 0;
                     Debug.Log("Unity WebGL is running on desktop");
+                   
                 }
             }
             else
@@ -173,6 +175,7 @@ namespace Platformer.Mechanics
 
         public enum JumpState
         {
+			
             Grounded,
             PrepareToJump,
             Jumping,

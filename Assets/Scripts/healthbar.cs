@@ -16,14 +16,10 @@ public class healthbar : MonoBehaviour
         slider.maxValue = 10;
         slider.minValue = 0;
     }
-
     // Update is called once per frame
     public void Update()
     {
         healthbarv = GameObject.Find("Player").GetComponent<Health>().currentHP;
-        Debug.Log(healthbarv);
         slider.value = healthbarv;
     }
-
-   
 }

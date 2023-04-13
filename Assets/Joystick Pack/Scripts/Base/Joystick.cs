@@ -112,10 +112,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             }
             else if (snapAxis == AxisOptions.Vertical)
             {
+                
                 if (angle > 67.5f && angle < 112.5f)
                     return 0;
                 else
                     return (value > 0) ? 1 : -1;
+             
             }
             return value;
         }
