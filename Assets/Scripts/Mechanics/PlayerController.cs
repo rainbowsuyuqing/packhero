@@ -44,9 +44,9 @@ namespace Platformer.Mechanics
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
-     
-        
 
+        public GameObject story;
+    
        
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         public Bounds Bounds => collider2d.bounds;
@@ -65,7 +65,9 @@ namespace Platformer.Mechanics
                 {
                     deviceType = 1;
                     Debug.Log("Unity WebGL is running on mobile device");
-
+                    story.SetActive(false);
+                    
+                    
 
                 }
                 else
@@ -74,6 +76,8 @@ namespace Platformer.Mechanics
                     jumpButton.SetActive(false);
                     deviceType = 0;
                     Debug.Log("Unity WebGL is running on desktop");
+                    story.SetActive(true);
+                    
                    
                 }
             }
@@ -144,6 +148,7 @@ namespace Platformer.Mechanics
                     jumpState = JumpState.Grounded;
                     if(deviceType == 1) { pressedJump = false; }
                     break;
+                
             }
         }
 
@@ -171,21 +176,20 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
             targetVelocity = move * maxSpeed;
         }
-    
-
         public enum JumpState
         {
-			
+            
             Grounded,
             PrepareToJump,
             Jumping,
             InFlight,
             Landed,
             st1,
+            
         }
-
         public void ButtonJump()
         {
+            
             pressedJump = true;
         }
     }
